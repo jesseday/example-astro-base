@@ -1,0 +1,22 @@
+---
+/**
+ * @file Match.astro
+ * @description Conditional rendering component that
+ *   renders a slot when the `when` prop is truthy.
+ * @see Switch.astro
+ */
+let when = Astro.props.when;
+
+if (typeof when === 'function' && when.constructor.name !== 'AsyncFunction') {
+  when = when();
+}
+else if (typeof when === 'function' && when.constructor.name === 'AsyncFunction') {
+  when = await when();
+}
+
+if (!when) {
+  return;
+}
+---
+
+<slot />

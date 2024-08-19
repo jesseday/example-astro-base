@@ -1,0 +1,41 @@
+---
+import Switch from '../flow/Switch.astro';
+import Match from '../flow/Match.astro';
+
+import Layout from '../layouts/Layout.astro';
+
+
+import Section from '../components/Section.astro';
+import Hero from '../components/Hero.astro';
+import Testimonial from '../components/Testimonial.astro';
+import Duplex from '../components/Duplex.astro';
+
+const content = [
+	'hero',
+	'duplex',
+	'testimonial',
+]
+---
+
+<Layout title="Welcome to Astro.">
+	<main>
+	  {content.map((type, index) => (
+			<Switch>
+				<Match when={type === 'hero'}>
+					<Hero />
+				</Match>
+				<Match when={() => type === 'duplex'}>
+					<Section>
+						<Duplex />
+					</Section>
+				</Match>
+				<Match when={async () => type === 'testimonial'}>
+					<Section>
+						<Testimonial />
+					</Section>
+				</Match>
+			</Switch>
+		))}
+	</main>
+</Layout>
+

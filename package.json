@@ -1,0 +1,21 @@
+{
+  "name": "base-components",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "plop": "plop",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.3",
+    "astro": "^4.14.2",
+    "typescript": "^5.5.4"
+  },
+  "devDependencies": {
+    "plop": "^4.0.1"
+  }
+}

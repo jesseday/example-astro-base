@@ -1,0 +1,21 @@
+---
+/**
+ * @file For.astro
+ * @description Loop over an array and render a
+ *   slot for each item.
+ * 
+ * Inspired by Solid's For component.
+ * 
+ * My first impression is that this will make types
+ * harder to infer and it doesn't seem any easier
+ * to read, but it's interesting to see what's
+ * possible with Astro.
+ */
+const each = Astro.props.each;
+
+const content = each.map((item, index) => {
+  return Astro.slots.render('default', [item, index]);
+});
+---
+
+{content}
