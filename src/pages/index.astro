@@ -19,7 +19,7 @@ const content = [
 
 <Layout title="Welcome to Astro.">
 	<main>
-	  {content.map((type, index) => (
+	  {content.map((type) => (
 			<Switch>
 				<Match when={type === 'hero'}>
 					<Hero />
