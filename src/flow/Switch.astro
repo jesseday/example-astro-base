@@ -1,12 +1,18 @@
 ---
 /**
  * @file Switch.astro
- * @description Passthrough component that renders
- *   a slot.  Matching is done by the `Match` component.
+ * @description Component that renders a slot or a fallback
+ *   if there is no value in the default slot.
+ *   Matching is done by the `Match` component.
  *   Technically, this you could leave this component out
- *   when using Switch/Match, but I think it improves
- *   readability.
+ *   when using the Match component, but I think it
+ *   improves readability and provides a fallback.
  * @see Match.astro
  */
+
+const truthy = await Astro.slots.render('default').then((value => {
+   return value.trim().length > 0;
+}));
 ---
-<slot />
+{truthy && <slot />}
+{!truthy && <slot name="fallback" />}

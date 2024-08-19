@@ -1,6 +1,7 @@
 ---
 import Switch from '../flow/Switch.astro';
 import Match from '../flow/Match.astro';
+import Show from '../flow/Show.astro';
 
 import Layout from '../layouts/Layout.astro';
 
@@ -14,6 +15,7 @@ const content = [
 	'hero',
 	'duplex',
 	'testimonial',
+	'nonexistent',
 ]
 ---
 
@@ -34,6 +36,13 @@ const content = [
 						<Testimonial />
 					</Section>
 				</Match>
+				<Fragment slot="fallback">
+					<Show when={import.meta.env.MODE === 'development'}>
+						<Section>
+							<p>Unknown type: {type}</p>
+						</Section>
+					</Show>
+				</Fragment>
 			</Switch>
 		))}
 	</main>

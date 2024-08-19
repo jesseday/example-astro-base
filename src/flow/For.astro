@@ -1,20 +1,37 @@
 ---
 /**
- * @file For.astro
+ * @file For.astro, inspired by Solid's For component.
  * @description Loop over an array and render a
  *   slot for each item.
- * 
- * Inspired by Solid's For component.
+ * @params
+ *  each: Array - The array to loop over.
  * 
  * My first impression is that this will make types
  * harder to infer and it doesn't seem any easier
  * to read, but it's interesting to see what's
- * possible with Astro.
+ * possible with Astro's api.
+ *
+ * @example
+ * <For each={['hero', 'duplex', 'testimonial']}>
+ *   {(type, index) => (
+ *     <Switch>
+ *       <Match when={type === 'hero'}>
+ *         <Hero />
+ *       </Match>
+ *       <Match when={type === 'duplex'}>
+ *         <Duplex />
+ *       </Match>
+ *       <Match when={type === 'testimonial'}>
+ *         <Testimonial />
+ *       </Match>
+ *     </Switch>
+ *   )}
+ * </For>
  */
 const each = Astro.props.each;
 
-const content = each.map((item, index) => {
-  return Astro.slots.render('default', [item, index]);
+const content = each.map(async (item, index) => {
+  return await Astro.slots.render('default', [item, index]);
 });
 ---
 
