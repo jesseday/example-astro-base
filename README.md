@@ -6,6 +6,8 @@ Inside of this Astro project, you'll see the following folders and files:
 
 ```text
 /
+├── plop-templates
+│   └── component.astro.hbs
 ├── public/
 │   └── favicon.svg
 ├── src/
@@ -17,7 +19,7 @@ Inside of this Astro project, you'll see the following folders and files:
 │   │   └── Layout.astro
 │   └── pages/
 │       └── index.astro
-└── package.json
+├── package.json
 └── plopfile.js
 ```
 
