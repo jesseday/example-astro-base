@@ -21,7 +21,6 @@ const content = [
 
 <Layout title="Welcome to Astro.">
 	<main>
-		<a href="/example">Example</a>
 	  {content.map((type) => (
 			<Switch>
 				<Match when={type === 'hero'}>
@@ -36,6 +35,19 @@ const content = [
 					<Section>
 						<Testimonial />
 					</Section>
+				</Match>
+				<Match when={type === 'card list'}>
+					{() => {
+						// Technically if you need to, you can 
+						// place the child content in a function.  That way
+						// you have access to the full power of JS.  I don't
+						// really think I like this, but it's interesting to know.
+						return (
+							<Section>
+								<Section>@todo: {type}</Section>
+							</Section>
+						)
+					}}
 				</Match>
 				<Fragment slot="fallback">
 					<Show when={import.meta.env.MODE === 'development'}>
