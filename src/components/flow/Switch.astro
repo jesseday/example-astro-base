@@ -10,9 +10,9 @@
  * @see Match.astro
  */
 
-const truthy = await Astro.slots.render('default').then((value => {
+const hasContent = await Astro.slots.render('default').then((value => {
    return value.trim().length > 0;
 }));
 ---
-{truthy && <slot />}
-{!truthy && <slot name="fallback" />}
+{hasContent && <slot />}
+{!hasContent && <slot name="fallback" />}

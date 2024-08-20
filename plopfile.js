@@ -8,11 +8,17 @@ export default function (plop) {
         name: "name",
         message: "What is the name of the component?",
       },
+      {
+        type: "list",
+        name: "type",
+        message: "What type of component is this?",
+        choices: ["ui", "flow", "layout", "thirdparty"],
+      },
     ],
     actions: [
       {
         type: "add",
-        path: "src/components/{{pascalCase name}}.astro",
+        path: "src/components/{{lowerCase type}}/{{pascalCase name}}.astro",
         templateFile: "plop-templates/component.astro.hbs",
       },
     ],
