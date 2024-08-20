@@ -1,17 +1,8 @@
 ---
-import Switch from "@components/flow/Switch.astro";
-import Match from "@components/flow/Match.astro";
-import Show from "@components/flow/Show.astro";
-
+import Renderer from "@components/flow/Renderer.astro";
 import Layout from "@layouts/Layout.astro";
 
 import Section from "@components/ui/Section.astro";
-import Hero from "@components/ui/Hero.astro";
-import Testimonial from "@components/ui/Testimonial.astro";
-import Duplex from "@components/ui/Duplex.astro";
-import Body from "@components/ui/Body.astro";
-import Video from "@components/ui/Video.astro";
-import Image from "@components/ui/Image.astro";
 
 const content = [
   "hero",
@@ -26,61 +17,6 @@ const content = [
 
 <Layout title="Welcome to Astro.">
   <main>
-    {
-      content.map((type) => (
-        <Switch>
-          <Match when={type === "hero"}>
-            <Section width="full" theme="dark">
-              <Hero />
-            </Section>
-          </Match>
-          <Match when={() => type === "duplex"}>
-            <Section>
-              <Duplex />
-            </Section>
-          </Match>
-          <Match when={async () => type === "testimonial"}>
-            <Section>
-              <Testimonial />
-            </Section>
-          </Match>
-          <Match when={type === "body"}>
-            <Section width="narrow">
-              <Body />
-            </Section>
-          </Match>
-          <Match when={type === "video"}>
-            <Section width="narrow">
-              <Video />
-            </Section>
-          </Match>
-          <Match when={type === "image"}>
-            <Section width="narrow">
-              <Image />
-            </Section>
-          </Match>
-          <Match when={type === "card list"}>
-            {() => {
-              // Technically if you need to, you can
-              // place the child content in a function.  That way
-              // you have access to the full power of JS.  I don't
-              // really think I like this, but it's interesting to know.
-              return (
-                <Section width="narrow">
-                  <p>@todo: {type}</p>
-                </Section>
-              );
-            }}
-          </Match>
-          <Fragment slot="fallback">
-            <Show when={import.meta.env.MODE === "development"}>
-              <Section>
-                <p>Unknown type: {type}</p>
-              </Section>
-            </Show>
-          </Fragment>
-        </Switch>
-      ))
-    }
+    {content.map((type) => <Renderer type={type} />)}
   </main>
 </Layout>
