@@ -1,19 +1,52 @@
 ---
-// JS
+interface SectionProps {
+  width?: "narrow" | "wide" | "full";
+  theme?: "light" | "dark";
+}
 ---
 
-<div data-component-id="Section">
-  <slot />
+<div
+  data-component-id="Section"
+  data-width={Astro.props.width || "wide"}
+  data-theme={Astro.props.theme || "light"}
+>
+  <div class="inner">
+    <slot />
+  </div>
 </div>
 
 <style>
   /* Default css. Remove and add your own styles */
   [data-component-id="Section"] {
     display: block;
-    background: #f0f0f0;
     padding: 1rem;
-    border: 1px dashed #ccc;
     width: 100%;
     min-height: 300px;
+  }
+
+  [data-theme="light"] {
+    background: #f0f0f0;
+    border: 1px dashed #ccc;
+  }
+
+  [data-theme="dark"] {
+    background: #333;
+    color: #fff;
+  }
+
+  [data-width="narrow"] .inner {
+    margin-inline: auto;
+    max-width: 980px;
+  }
+  [data-width="wide"] .inner {
+    margin-inline: auto;
+    max-width: 1440px;
+  }
+  [data-width="full"] {
+    padding: 0;
+  }
+  [data-width="full"] .inner {
+    margin-inline: auto;
+    max-width: 100%;
   }
 </style>
