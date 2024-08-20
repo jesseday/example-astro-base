@@ -5,10 +5,12 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "plop": "plop",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "make": "plop",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.3",
