@@ -1,8 +1,17 @@
 ---
-// JS
+import Section from "./Section.astro";
+
+const Wrapper = Astro.props.contain ? Section : Fragment;
+const forward = Astro.props.forward || {};
 ---
 
-<div data-component-id="Hero">Hero component</div>
+<Wrapper
+  width={forward?.width || "full"}
+  theme={forward?.theme || "dark"}
+  {...forward}
+>
+  <div data-component-id="Hero">Hero component</div>
+</Wrapper>
 
 <style>
   /* Default. Remove and update as needed */

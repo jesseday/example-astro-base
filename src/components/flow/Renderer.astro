@@ -31,10 +31,11 @@ const type = Astro.props.type;
       <Hero />
     </Section>
   </Match>
+  <Match when={type === "hero"}>
+    <Hero contain={true} />
+  </Match>
   <Match when={() => type === "duplex"}>
-    <Section>
-      <Duplex />
-    </Section>
+    <Duplex contain={true} />
   </Match>
   <Match when={async () => type === "testimonial"}>
     <Section>
