@@ -10,7 +10,9 @@ const forward = Astro.props.forward || {};
   theme={forward?.theme || "dark"}
   {...forward}
 >
-  <div data-component-id="Hero">Hero component</div>
+  <div data-component-id="Hero">
+    <h1>Hero component</h1>
+  </div>
 </Wrapper>
 
 <style>

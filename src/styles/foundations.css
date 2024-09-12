@@ -1,0 +1,22 @@
+:root {
+  --font-size-sm: clamp(0.8rem, 0.17vi + 0.76rem, 0.89rem);
+  --font-size-base: clamp(1rem, 0.34vi + 0.91rem, 1.19rem);
+  --font-size-md: clamp(1.25rem, 0.61vi + 1.1rem, 1.58rem);
+  --font-size-lg: clamp(1.56rem, 1vi + 1.31rem, 2.11rem);
+  --font-size-xl: clamp(1.95rem, 1.56vi + 1.56rem, 2.81rem);
+  --font-size-xxl: clamp(2.44rem, 2.38vi + 1.85rem, 3.75rem);
+  --font-size-xxxl: clamp(3.05rem, 3.54vi + 2.17rem, 5rem);
+
+  
+  --font-family-sans:  -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica, Cantarell, Ubuntu, roboto, noto, arial, sans-serif;
+  --font-family-serif: Iowan Old Style, Apple Garamond, Baskerville, Times New Roman, Droid Serif, Times, Source Serif Pro, serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+}
+
+body {
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-base)
+}
+
+h1, h2, h3 {
+  font-family: var(--font-family-serif);
+}
