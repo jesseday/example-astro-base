@@ -1,0 +1,32 @@
+---
+import { experimental_AstroContainer } from 'astro/container';
+const container = await experimental_AstroContainer.create();
+
+import { getEntry } from 'astro:content';
+import BaseLayout from '@layouts/Layout.astro';
+import componentMap from './import-map';
+
+
+const entry = await getEntry('components', Astro.params.component?.toLowerCase());
+
+let html;
+if (entry) {
+  // Just touch the component from the import map.
+  // This is a hack to make sure the styles are loaded
+  const _touch = componentMap[entry.data.id];
+  const AstroComponent = await import(entry.data.file);
+  html = container.renderToString(AstroComponent.default);
+} else {
+  html = 'Not found';
+}
+
+// Apparently just bringing the component into
+// the scope is enough to make rendering with
+// styles work.
+// const AstroComponent = components[entry.data.id];
+
+
+---
+<BaseLayout>
+  <Fragment set:html={html}></Fragment>
+</BaseLayout>
