@@ -6,7 +6,7 @@ export default function client(config?: CreateClientParams) {
     environment: import.meta.env.CONTENTFUL_ENVIRONMENT,
     accessToken: import.meta.env.PREVIEW
       ? import.meta.env.CONTENTFUL_PREVIEW_TOKEN
-      : import.meta.env.VITE_CONTENTFUL_ACCESS_TOKEN,
+      : import.meta.env.CONTENTFUL_ACCESS_TOKEN,
     host: import.meta.env.PREVIEW
       ? "preview.contentful.com"
       : "host.contentful.com",

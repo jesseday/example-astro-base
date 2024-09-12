@@ -4,24 +4,26 @@ import netlify from "@astrojs/netlify";
 import node from "@astrojs/node";
 
 function setPrerender() {
-  const { PRERENDER } = loadEnv(process.env.NODE_ENV, process.cwd(), "");
+  const { PREVIEW } = loadEnv(process.env.NODE_ENV, process.cwd(), "");
 
   return {
     name: "set-prerender",
     hooks: {
       "astro:route:setup": ({ route }) => {
-        route.prerender = PRERENDER === "true";
+        route.prerender = PREVIEW !== "true";
       },
     },
   };
 }
 
 function generateIsolationRoutes() {
+  const { PREVIEW } = loadEnv(process.env.NODE_ENV, process.cwd(), "");
+
   return {
     name: "generate-isolation-routes",
     hooks: {
       "astro:config:setup": ({ injectRoute }) => {
-        if (process.env.NODE_ENV === "production") {
+        if (PREVIEW !== "true") {
           return;
         }
 
