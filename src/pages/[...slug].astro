@@ -1,0 +1,29 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection, getEntry } from "astro:content";
+
+// IMPORTANT MESSAGE
+// I think this breaks how we do preview
+// Probably need to follow the path a bit more,
+// but from what I can tell, this will lead to basically
+// the same issue that we have with Gatsby, where there's
+// a layer that collects data and holds it essentially in
+// a cache.  So how would we ensure that we get the latest
+// content?
+export const getStaticPaths = (async () => {
+  const pages = await getCollection("page");
+
+  return pages.map((page) => ({
+    params: {
+      slug: page.data.slug,
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+const entry = await getEntry("page", Astro.params.slug);
+if (!entry) {
+  return new Response("Not found", { status: 404 });
+}
+---
+
+<h1>{entry.data.title}</h1>

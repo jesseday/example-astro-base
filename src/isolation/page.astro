@@ -3,7 +3,7 @@ import { experimental_AstroContainer } from 'astro/container';
 const container = await experimental_AstroContainer.create();
 
 import { getEntry } from 'astro:content';
-import BaseLayout from '@layouts/Layout.astro';
+import Layout from '@layouts/Layout.astro';
 import componentMap from './import-map';
 
 
@@ -14,7 +14,10 @@ if (entry) {
   // Just touch the component from the import map.
   // This is a hack to make sure the styles are loaded
   const _touch = componentMap[entry.data.id];
-  const AstroComponent = await import(entry.data.file);
+  const AstroComponent = await import(
+    /* @vite-ignore */
+    entry.data.file
+  );
   html = container.renderToString(AstroComponent.default);
 } else {
   html = 'Not found';
@@ -27,6 +30,6 @@ if (entry) {
 
 
 ---
-<BaseLayout>
+<Layout>
   <Fragment set:html={html}></Fragment>
-</BaseLayout>
+</Layout>
