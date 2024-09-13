@@ -30,7 +30,7 @@ const forward = Astro.props.forward || {};
 <style>
   [data-component-id="Duplex"] {
     display: grid;
-    grid-template-columns: subgrid;
+    grid-template-columns: 1fr;
     grid-column: 1 / -1;
     align-items: center;
     gap: 2rem;
@@ -53,13 +53,9 @@ const forward = Astro.props.forward || {};
     height: auto;
   }
 
-  @media (min-width: 768px) {
-    [data-component-id="Duplex"][data-presentation="off-center"] :global(> :first-child) {
-      grid-column: span 8;
-    }
-
-    [data-component-id="Duplex"][data-presentation="off-center"] :global(> :last-child) {
-      grid-column: span 6;
+  @container section (min-width: 768px) {
+    [data-component-id="Duplex"][data-presentation="off-center"] {
+      grid-template-columns: 6fr 4fr;
     }
 
     [data-component-id="Duplex"][data-presentation="off-center"] > :global(:last-child :is(img, picture)) {
@@ -67,16 +63,6 @@ const forward = Astro.props.forward || {};
       max-width: calc(100% + calc(var(--space-l-xl)));
       margin-right: calc(var(--space-l-xl) * -1);
       height: auto;
-    }
-  }
-
-    @media (min-width: 1024px) {
-    [data-component-id="Duplex"][data-presentation="off-center"] :global(> :first-child) {
-      grid-column: span 13;
-    }
-
-    [data-component-id="Duplex"][data-presentation="off-center"] :global(> :last-child) {
-      grid-column: span 9;
     }
   }
 </style>

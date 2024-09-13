@@ -18,18 +18,17 @@ export interface Props {
 <style>
   /* Default css. Remove and add your own styles */
   [data-component-id="Section"] {
-    display: grid;
-    grid-template-columns: subgrid;
+    display: block;
     grid-column: 1 / -1;
+    padding: 1rem;
     width: 100%;
     min-height: 300px;
   }
 
   [data-component-id="Section"] .inner {
-    display: grid;
-    grid-column: 2 / -2;
-    grid-template-columns: subgrid;
-    grid-template-rows: auto;
+    container-type: inline-size;
+    container-name: section;
+    overflow-x: hidden;
   }
 
   [data-theme="light"] {
