@@ -46,13 +46,14 @@ const presentation = Astro.props.presentation || "image-right";
   }
 
   [data-component-id="Hero"] :global(.eyebrow) {
-    color: var(--color-primary, #29ccc1);
     font-size: var(--size-step--1);
     font-family: var(--font-family-sans);
-    font-weight: 400;
+    font-weight: 600;
+    margin: 0;
     text-transform: uppercase;
   }
-  [data-component-id="Hero"] :global(:is(.eyebrow, h1, p)) {
+
+  [data-component-id="Hero"] :global(:is(h1, p)) {
     margin-top: 0;
     margin-bottom: 1rem;
   }
@@ -85,7 +86,7 @@ const presentation = Astro.props.presentation || "image-right";
     width: 100%;
     height: auto;
     z-index: 0;
-    mask-image: linear-gradient(to bottom, black, transparent);
-    filter: brightness(0.25);
+    mask-image: radial-gradient(transparent, black);
+    filter: grayscale(.5);
   }
 </style>
