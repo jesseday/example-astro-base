@@ -1,11 +1,23 @@
 :root {
-  --font-size-sm: clamp(0.8rem, 0.17vi + 0.76rem, 0.89rem);
-  --font-size-base: clamp(1rem, 0.34vi + 0.91rem, 1.19rem);
-  --font-size-md: clamp(1.25rem, 0.61vi + 1.1rem, 1.58rem);
-  --font-size-lg: clamp(1.56rem, 1vi + 1.31rem, 2.11rem);
-  --font-size-xl: clamp(1.95rem, 1.56vi + 1.56rem, 2.81rem);
-  --font-size-xxl: clamp(2.44rem, 2.38vi + 1.85rem, 3.75rem);
-  --font-size-xxxl: clamp(3.05rem, 3.54vi + 2.17rem, 5rem);
+  --size-step-8: clamp(2.3125rem, 0.1313rem + 10.906vi, 10.4375rem);
+  --size-step-7: clamp(2.0625rem, 0.7706rem + 6.4597vi, 6.875rem);
+  --size-step-6: clamp(1.8125rem, 1.0742rem + 3.6913vi, 4.5625rem);
+  --size-step-5: clamp(1.6875rem, 1.2177rem + 2.349vi, 3.4375rem);
+  --size-step-4: clamp(1.5625rem, 1.2773rem + 1.4262vi, 2.625rem);
+  --size-step-3: clamp(1.4375rem, 1.2865rem + 0.755vi, 2rem);
+  --size-step-2: clamp(1.3125rem, 1.1951rem + 0.5872vi, 1.75rem);
+  --size-step-1: clamp(1.1875rem, 1.1036rem + 0.4195vi, 1.5rem);
+  --size-step-0: clamp(1.0625rem, 0.9954rem + 0.3356vi, 1.3125rem);
+  --size-step--1: clamp(1rem, 0.9664rem + 0.1678vi, 1.125rem);
+  --size-step--2: clamp(0.875rem, 0.8414rem + 0.1678vi, 1rem);
+  --size-step--3: clamp(0.8125rem, 0.7957rem + 0.0839vi, 0.875rem);
+  --size-step--4: clamp(0.625rem, 0.7043rem + -0.0839vi, 0.6875rem);
+
+  --font-size-base: var(--size-step-1);
+  --font-size-h1: var(--size-step-6);
+  --font-size-h2: var(--size-step-5);
+  --font-size-h3: var(--size-step-4);
+  --font-size-h4: var(--size-step-3);
 
   --space-l-xl: clamp(3rem, 3.5vi + 1.5rem, 6rem);
 
@@ -26,9 +38,17 @@ h1, h2, h3 {
 }
 
 h1 {
-  font-size: var(--font-size-xxxl);
+  font-size: var(--font-size-h1);
 }
 
 h2 {
-  font-size: var(--font-size-xxl);
+  font-size: var(--font-size-h2);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+}
+
+h4 {
+  font-size: var(--font-size-h4);
 }
