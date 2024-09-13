@@ -37,6 +37,10 @@ const forward = Astro.props.forward || {};
     padding: var(--space-l-xl);
   }
 
+  [data-component-id="Duplex"] :global(:first-child p) {
+    max-width: 42ch;
+  }
+
   [data-component-id="Duplex"]:not([data-presentation="off-center"]) {
     /* 
      * calc is the width that i want it to break minus
