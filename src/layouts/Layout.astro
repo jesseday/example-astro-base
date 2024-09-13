@@ -21,7 +21,31 @@ const { title } = Astro.props;
 		<Posthog key="phc_JmyzYtaMWovghkcCKge2egEQRn1WmYMoFtdDugmeRSQ" />
 	</head>
 	<body>
-		<slot />
+		<main>
+			<div class="grid-layout">
+				<slot />
+			</div>
+		</main>
 	</body>
 </html>
 
+<style>
+	.grid-layout {
+		display: grid;
+		grid-auto-rows: auto;
+		grid-auto-flow: row;
+		row-gap: 0;
+		grid-template-columns: repeat(8, 1fr);
+		width: 100%;
+	}
+	@media (min-width: 768px) {
+		.grid-layout {
+			grid-template-columns: repeat(16, 1fr);
+		}
+	}
+	@media (min-width: 1024px) {
+		.grid-layout {
+			grid-template-columns: repeat(24, 1fr);
+		}
+	}
+</style>

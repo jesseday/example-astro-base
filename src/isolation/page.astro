@@ -7,7 +7,7 @@ import Layout from '@layouts/Layout.astro';
 import componentMap from './import-map';
 
 
-const entry = await getEntry('components', Astro.params.component?.toLowerCase());
+const entry = await getEntry('components', (Astro.params.component || '').toLowerCase());
 
 let html;
 if (entry) {
@@ -27,8 +27,6 @@ if (entry) {
 // the scope is enough to make rendering with
 // styles work.
 // const AstroComponent = components[entry.data.id];
-
-
 ---
 <Layout>
   <Fragment set:html={html}></Fragment>

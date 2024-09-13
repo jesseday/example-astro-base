@@ -1,5 +1,5 @@
 ---
-interface Props {
+export interface Props {
   width?: "narrow" | "wide" | "full";
   theme?: "light" | "dark";
 }
@@ -18,10 +18,18 @@ interface Props {
 <style>
   /* Default css. Remove and add your own styles */
   [data-component-id="Section"] {
-    display: block;
-    padding: 1rem;
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-column: 1 / -1;
     width: 100%;
     min-height: 300px;
+  }
+
+  [data-component-id="Section"] .inner {
+    display: grid;
+    grid-column: 2 / -2;
+    grid-template-columns: subgrid;
+    grid-template-rows: auto;
   }
 
   [data-theme="light"] {
