@@ -1,15 +1,15 @@
 ---
-import Switch from "@components/flow/Switch.astro";
-import Match from "@components/flow/Match.astro";
-import Show from "@components/flow/Show.astro";
+import Switch from "@lib/flow/Switch.astro";
+import Match from "@lib/flow/Match.astro";
+import Show from "@lib/flow/Show.astro";
 
-import Section from "@components/ui/Section.astro";
-import Hero from "@components/ui/Hero.astro";
-import Testimonial from "@components/ui/Testimonial.astro";
-import Duplex from "@components/ui/Duplex.astro";
-import Body from "@components/ui/Body.astro";
-import Video from "@components/ui/Video.astro";
-import Image from "@components/ui/Image.astro";
+import Section from "@lib/ui/Section.astro";
+import Hero from "@lib/ui/Hero.astro";
+import Testimonial from "@lib/ui/Testimonial.astro";
+import Duplex from "@lib/ui/Duplex.astro";
+import Body from "@lib/ui/Body.astro";
+import Video from "@lib/ui/Video.astro";
+import Image from "@lib/ui/Image.astro";
 
 interface Props {
   type: string;
@@ -27,7 +27,13 @@ const type = Astro.props.type;
     </Show>
   </Fragment>
   <Match when={type === "hero"}>
-    <Hero contain={true} />
+    <Hero contain={true} presentation="full">
+      <Fragment slot="content">
+        <h1 class="title">Hero component</h1>
+        <p class="subtitle">Egestas ante integer dolor sed tempor parturient, auctor aenean.</p>
+      </Fragment>
+      <img slot="image" width="1400" height="700" src="https://picsum.photos/1400/700" alt="Placeholder image" />
+    </Hero>
   </Match>
   <Match when={() => type === "duplex"}>
     <Duplex contain={true}>

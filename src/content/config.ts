@@ -43,7 +43,10 @@ const page = defineCollection({
 const componentsCollection = defineCollection({
   loader: async () => {
     // globs from the root of the project
-    const stories = await glob(["src/components/**/*.story.astro"]);
+    const stories = await glob([
+      "src/lib/**/*.story.astro",
+      "src/components/**/*.story.astro",
+    ]);
 
     const entries = stories.map(async (story) => {
       const definition = await import(
