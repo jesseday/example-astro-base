@@ -29,7 +29,7 @@ function generateIsolationRoutes() {
 
         injectRoute({
           pattern: "/isolation/[...component]",
-          entrypoint: "src/isolation/page.astro",
+          entrypoint: "src/integrations/isolation/page.astro",
         });
       },
     },

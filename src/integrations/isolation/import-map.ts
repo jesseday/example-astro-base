@@ -1,4 +1,4 @@
-import Hero from "@lib/ui/Hero.astro";
+import Hero from "@components/ui/Hero.astro";
 import Body from "@lib/ui/Body.astro";
 import Section from "@lib/ui/Section.astro";
 import Duplex from "@lib/ui/Duplex.astro";
