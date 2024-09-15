@@ -1,0 +1,17 @@
+---
+import Hero, {type Props as HeroProps } from '../Hero.astro';
+
+export const story = {
+  name: 'components/Hero/Full',
+  description: 'A full width hero component',
+}
+---
+<Fragment>
+  <Hero contain forward={{ theme: 'dark'}} presentation='full'>
+    <Fragment slot="content">
+      <h1 class="title">Hero component</h1>
+      <p class="subtitle">Maximus scelerisque quis dictum aptent in semper dolor maecenas suspendisse lobortis, habitant ante fringilla consequat.</p>
+    </Fragment>
+    <img slot="image" width="1400" height="700" src="https://picsum.photos/1400/700" alt="Placeholder image" />
+  </Hero>
+</Fragment>

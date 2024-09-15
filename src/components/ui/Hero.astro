@@ -2,7 +2,7 @@
 import Section, { type Props as SectionProps } from "./Section.astro";
 import Duplex from "./Duplex.astro";
 
-export interface HeroProps {
+export interface Props {
   contain?: boolean;
   presentation?: "image-right" | "full";
   forward?: SectionProps;
@@ -11,6 +11,9 @@ export interface HeroProps {
 const Wrapper = Astro.props.contain ? Section : Fragment;
 const forward = Astro.props.forward || {};
 const presentation = Astro.props.presentation || "image-right";
+
+const content = await Astro.slots.render('content');
+const image = await Astro.slots.render('image');
 ---
 
 <Wrapper
@@ -21,20 +24,17 @@ const presentation = Astro.props.presentation || "image-right";
   <div data-component-id="Hero" data-presentation={presentation}>
     {presentation === 'image-right' && (
       <Duplex>
-        <div slot="content">
-          <p class="eyebrow">EYEBROW</p>
-          <h1>Hero title can be wider than the subtitle</h1>
-          <p>Maximus scelerisque quis dictum aptent in semper dolor maecenas suspendisse lobortis, habitant ante fringilla consequat.</p>
+        <div class="content" slot="content">
+          <Fragment set:html={content} />
         </div>
-        <img slot="aside" width="600" height="500" src="https://picsum.photos/600/500" alt="Placeholder image" />
+        <Fragment set:html={image} slot="aside" />
       </Duplex>
     )}
     {presentation === 'full' && (
       <div class="content">
-        <h1>Hero component</h1>
-        <p>Maximus scelerisque quis dictum aptent in semper dolor maecenas suspendisse lobortis, habitant ante fringilla consequat.</p>
+        <Fragment set:html={content} />
       </div>
-      <img width="1400" height="700" src="https://picsum.photos/1400/700" alt="Placeholder image" />
+      <Fragment set:html={image} />
     )}
   </div>
 </Wrapper>
@@ -58,6 +58,14 @@ const presentation = Astro.props.presentation || "image-right";
     margin-bottom: 1rem;
   }
 
+  [data-component-id="Hero"] .content :global(> *) {
+    margin-bottom: 0;
+  }
+
+  [data-component-id="Hero"] .content :global(> *:not(.eyebrow) + *) {
+    margin-top: var(--space-base-md);
+  }
+
   [data-component-id="Hero"][data-presentation="full"] {
     display: grid;
     grid-template-columns: 1fr;
@@ -68,20 +76,26 @@ const presentation = Astro.props.presentation || "image-right";
   }
 
   [data-component-id="Hero"][data-presentation="full"] .content {
-    z-index: 1;
     align-self: center;
     justify-self: center;
-    max-width: 75ch;
     margin: 0 auto;
+    max-width: 980px;
     padding-inline: var(--space-l-xl);
+    text-align: center;
+    z-index: 1;
   }
 
-  [data-component-id="Hero"][data-presentation="full"] h1 {
+  [data-component-id="Hero"][data-presentation="full"] .content :global(> :not(.title)) {
+    max-width: 680px;
+    margin-inline: auto;
+  }
+
+  [data-component-id="Hero"][data-presentation="full"] :global(:is(h1, .title)) {
     font-size: var(--size-step-8);
-    line-height: .8;
+    line-height: .9;
   }
 
-  [data-component-id="Hero"][data-presentation="full"] img {
+  [data-component-id="Hero"][data-presentation="full"] :global(img) {
     object-fit: cover;
     width: 100%;
     height: auto;

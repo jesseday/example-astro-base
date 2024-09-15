@@ -1,10 +1,18 @@
 ---
-import Hero from '../Hero.astro';
+import Hero, {type Props as HeroProps } from '../Hero.astro';
 
 export const story = {
   name: 'components/Hero/Default',
   description: 'A basic hero component, no extras',
 }
 ---
-
-<Hero presentation="full" contain forward={{ theme: 'dark'}} />
+<Fragment>
+  <Hero contain forward={{ theme: 'dark'}}>
+    <Fragment slot="content">
+      <p class="eyebrow">EYEBROW</p>
+      <h1 class="title">Hero title can be wider than the subtitle</h1>
+      <p class="subtitle">Maximus scelerisque quis dictum aptent in semper dolor maecenas suspendisse lobortis, habitant ante fringilla consequat.</p>    
+    </Fragment>
+    <img slot="image" width="600" height="500" src="https://picsum.photos/600/500" alt="Placeholder image" />
+  </Hero>
+</Fragment>

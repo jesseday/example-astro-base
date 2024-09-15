@@ -19,6 +19,7 @@
   --font-size-h3: var(--size-step-4);
   --font-size-h4: var(--size-step-3);
 
+  --space-base-md: clamp(1rem, 3.5vi + 1rem, 2.5rem);
   --space-l-xl: clamp(3rem, 3.5vi + 1.5rem, 6rem);
 
   

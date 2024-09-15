@@ -1,4 +1,20 @@
 ---
+/**
+ * @file Duplex.astro
+ * @description A component that displays two elements side by side.
+ * 
+ * A duplex is a structural component that displays two elements
+ * side by side.  It will always display both slots so if one
+ * slot is missing, this alternative presentation
+ * should be handled in a separate component.
+ * This keeps the component simple.
+ * 
+ * Content can be slotted in either side of the duplex and the
+ * structural presentation can change, but the component
+ * should not style sub-content.  The one exception to
+ * this is the image in the aside slot, which is
+ * styled to be responsive.
+ */
 import Section, { type Props as SectionProps } from "./Section.astro";
 
 export interface Props {
