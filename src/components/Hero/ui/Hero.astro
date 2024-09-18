@@ -1,5 +1,5 @@
 ---
-import Section, { type Props as SectionProps } from "@lib/ui/Section.astro";
+import Section, { type Props as SectionProps } from "@shared/ui/Section.astro";
 import Duplex from "@lib/ui/Duplex.astro";
 
 export interface Props {
@@ -11,9 +11,6 @@ export interface Props {
 const Wrapper = Astro.props.contain ? Section : Fragment;
 const forward = Astro.props.forward || {};
 const presentation = Astro.props.presentation || "image-right";
-
-const content = await Astro.slots.render('content');
-const image = await Astro.slots.render('image');
 ---
 
 <Wrapper
@@ -22,25 +19,15 @@ const image = await Astro.slots.render('image');
   {...forward}
 >
   <div data-component-id="Hero" data-presentation={presentation}>
-    {presentation === 'image-right' && (
-      <Duplex>
-        <div class="content" slot="content">
-          <Fragment set:html={content} />
-        </div>
-        <Fragment set:html={image} slot="aside" />
-      </Duplex>
-    )}
-    {presentation === 'full' && (
-      <div class="content">
-        <Fragment set:html={content} />
-      </div>
-      <Fragment set:html={image} />
-    )}
+    <div class="content" >
+      <slot name="content" />
+    </div>
+    <slot name="image" />
   </div>
 </Wrapper>
 
 <style>
-  /* Default. Remove and update as needed */
+  /* Minimal styling on the base component.  Just enough.  Layout goes on presentation. */
   [data-component-id="Hero"] {
     position: relative;
   }
@@ -66,7 +53,7 @@ const image = await Astro.slots.render('image');
     margin-top: var(--space-base-md);
   }
 
-  [data-component-id="Hero"][data-presentation="full"] {
+  [data-presentation="full"] {
     display: grid;
     grid-template-columns: 1fr;
     > * {
@@ -75,7 +62,7 @@ const image = await Astro.slots.render('image');
     }
   }
 
-  [data-component-id="Hero"][data-presentation="full"] .content {
+  [data-presentation="full"] .content {
     align-self: center;
     justify-self: center;
     margin: 0 auto;
@@ -85,22 +72,37 @@ const image = await Astro.slots.render('image');
     z-index: 1;
   }
 
-  [data-component-id="Hero"][data-presentation="full"] .content :global(> :not(.title)) {
+  [data-presentation="full"] .content :global(> :not(.title)) {
     max-width: 680px;
     margin-inline: auto;
   }
 
-  [data-component-id="Hero"][data-presentation="full"] :global(:is(h1, .title)) {
+  [data-presentation="full"] :global(:is(h1, .title)) {
     font-size: var(--size-step-8);
     line-height: .9;
   }
 
-  [data-component-id="Hero"][data-presentation="full"] :global(img) {
+  [data-presentation="full"] :global(img) {
     object-fit: cover;
     width: 100%;
     height: auto;
     z-index: 0;
     mask-image: radial-gradient(transparent, black);
     filter: grayscale(.5);
+  }
+
+  [data-presentation="image-right"] {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-column: 1 / -1;
+    align-items: center;
+    gap: 2rem;
+    padding: var(--space-l-xl);
+    /* 
+     * calc is the width that i want it to break minus
+     * the padding on the sides, the gap between the
+     * elements, and the border around the section.
+     */
+    grid-template-columns: repeat(auto-fit, minmax(calc((767px / 2 ) - 1rem - 1rem - var(--space-l-xl) - 1px), 1fr));
   }
 </style>

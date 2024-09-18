@@ -1,13 +1,13 @@
 ---
-import Duplex from "../Duplex.astro"
+import Duplex from "@components/Duplex/ui/Duplex.astro"
 
 export const story = {
-  name: 'components/Duplex/OffCenter',
+  name: 'components/Duplex/Default',
   description: 'A basic duplex component, no extras',
 }
 ---
 
-<Duplex contain presentation="off-center">
+<Duplex contain presentation="default">
   <img width="600" height="500" slot="aside" src="https://picsum.photos/600/500" alt="Random image" />
   <div slot="content">
     <h2>This is a Duplex component headline</h2>

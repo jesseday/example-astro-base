@@ -22,11 +22,6 @@ if (entry) {
 } else {
   html = 'Not found';
 }
-
-// Apparently just bringing the component into
-// the scope is enough to make rendering with
-// styles work.
-// const AstroComponent = components[entry.data.id];
 ---
 <Layout title={entry.data.name}>
   <Fragment set:html={html}></Fragment>

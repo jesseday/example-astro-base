@@ -3,10 +3,14 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@lib/*": ["src/lib/*"],
+      "@blocks/*": ["src/blocks/*"],
       "@components/*": ["src/components/*"],
+      "@entities/*": ["src/entities/*"],
+      "@integrations/*": ["src/integrations/*"],
       "@layouts/*": ["src/layouts/*"],
-      "@pages/*": ["src/pages/*"]
+      "@pages/*": ["src/pages/*"],
+      "@shared/*": ["src/shared/*"],
+      "@styles/*": ["src/styles/*"],
     }
   }
 }
