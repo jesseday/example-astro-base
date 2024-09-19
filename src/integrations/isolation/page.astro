@@ -2,12 +2,14 @@
 import { experimental_AstroContainer } from 'astro/container';
 const container = await experimental_AstroContainer.create();
 
-import { getEntry } from 'astro:content';
+import { getEntry, getCollection } from 'astro:content';
 import Layout from '@layouts/Layout.astro';
 import componentMap from './import-map';
 
+const url = new URL(Astro.request.url);
 
 const entry = await getEntry('components', (Astro.params.component || '').toLowerCase());
+const entries = await getCollection('components');
 
 let html;
 if (entry) {
@@ -24,5 +26,58 @@ if (entry) {
 }
 ---
 <Layout title={entry.data.name}>
-  <Fragment set:html={html}></Fragment>
+  {url.searchParams.get('hideMenu') !== 'true' && (
+    <menu>
+      {entries.map(entry => (
+        <li>
+          <a href={`/isolation/${entry.data.id}`}>{entry.data.name}</a>
+        </li>
+      ))}
+    </menu>
+  )}
+  <article>
+    <Fragment set:html={html}></Fragment>
+  </article>
 </Layout>
+
+<style>
+  menu {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 0;
+    word-wrap: break-word;
+
+    li {
+      list-style: none;
+    }
+  }
+
+  article {
+    display: contents;
+    grid-column: 1 / -1;
+  }
+
+  menu + article {
+    display: block;
+  }
+
+  @media screen and (min-width: 768px) {
+    menu {
+      grid-column: span 4;
+    }
+
+    article {
+      grid-column: span 12;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    menu {
+      grid-column: span 6;
+    }
+
+    article {
+      grid-column: span 18;
+    }
+  }
+</style>
