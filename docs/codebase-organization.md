@@ -90,7 +90,7 @@ practical, without locking ourselves into naming
 conventions that may or may not work for our purposes.
 
 For that reason, we're adopting the following layer
-name conventions within this /lib directory and defining
+name conventions within this directory and defining
 them as follows. This also represents to top to bottom
 dependency direction.
 
