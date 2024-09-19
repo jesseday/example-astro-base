@@ -2,7 +2,7 @@
 export interface Props {
   size?: string;
   gap?: string;
-  fraction?: '60fr 40fr' | '66fr 34fr' | '75fr 25fr' | '80fr 20fr' | '85fr 15fr' | '90fr 10fr' | '95fr 5fr' | '100fr';
+  fraction?: '66fr 34fr' | '34fr 66fr' | '75fr 25fr' | '25fr 75fr' | '50fr 50fr';
 };
 ---
 
@@ -26,19 +26,19 @@ export interface Props {
     padding: 0;
   }
 
+  [data-component-id="Grid"] :global(> li) {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 200px;
+    background-color: blue;
+    color: var(--color-white, #fff);
+    font-size: var(--size-step-1);
+  }
+
   @container section (min-width: 768px) {
     [data-component-id="Grid"] {
       grid-template-columns: var(--grid-fraction);
     }
-  }
-
-  [data-component-id="Grid"] :global(> li) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 200px;
-    background-color: blue;
-    color: var(--color-white);
-    font-size: var(--size-step-1);
   }
 </style>
