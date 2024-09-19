@@ -9,7 +9,18 @@ import componentMap from './import-map';
 const url = new URL(Astro.request.url);
 
 const entry = await getEntry('components', (Astro.params.component || '').toLowerCase());
-const entries = await getCollection('components');
+const menu = (await getCollection('components'))
+  .map(entry => entry.data.id.split('/'))
+  .reduce((acc, name) => {
+    if (!acc[name[0]]) {
+      acc[name[0]] = [];
+    }
+    acc[name[0]].push(name);
+    return acc;
+  }, {});
+
+  console.log(Object.keys(menu))
+
 
 let html;
 if (entry) {
@@ -28,10 +39,16 @@ if (entry) {
 <Layout title={entry.data.name}>
   {url.searchParams.get('hideMenu') !== 'true' && (
     <menu>
-      {entries.map(entry => (
-        <li>
-          <a href={`/isolation/${entry.data.id}`}>{entry.data.name}</a>
-        </li>
+      {Object.keys(menu).map((category) => (
+        <li><a href="?hideMenu=true">Hide menu</a></li>
+        <li><strong>{category}</strong></li>
+        <ul>
+          {menu[category].map((component: string[]) => (
+            <li>
+              <a href={`/isolation/${component.join('/')}`}>{component.slice(1).join('/')}</a>
+            </li>
+          ))}
+        </ul>
       ))}
     </menu>
   )}
@@ -42,13 +59,21 @@ if (entry) {
 
 <style>
   menu {
+    background-color: aliceblue;
     grid-column: 1 / -1;
     margin: 0;
-    padding: 0;
+    padding: 1rem;
     word-wrap: break-word;
 
+    ul,
     li {
       list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    li:has(+ ul) {
+      margin-bottom: 1rem;
     }
   }
 
