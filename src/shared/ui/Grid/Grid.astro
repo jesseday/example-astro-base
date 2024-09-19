@@ -1,0 +1,44 @@
+---
+export interface Props {
+  size?: string;
+  gap?: string;
+  fraction?: '60fr 40fr' | '66fr 34fr' | '75fr 25fr' | '80fr 20fr' | '85fr 15fr' | '90fr 10fr' | '95fr 5fr' | '100fr';
+};
+---
+
+<ul data-component-id="Grid">
+  <slot />
+</ul>
+
+<style define:vars={{fraction: Astro.props.fraction, gridGap: Astro.props.gap}}>
+  [data-component-id="Grid"] {
+    --min-item-size: var(--itemSize, 300px);
+    --grid-gap: var(--gridGap, 1rem);
+    --grid-fraction: var(--fraction, 1fr);
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: 1fr;
+    gap: var(--space-base-md, 1rem);
+    width: 100%;
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  @container section (min-width: 768px) {
+    [data-component-id="Grid"] {
+      grid-template-columns: var(--grid-fraction);
+    }
+  }
+
+  [data-component-id="Grid"] :global(> li) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+    background-color: blue;
+    color: var(--color-white);
+    font-size: var(--size-step-1);
+  }
+</style>

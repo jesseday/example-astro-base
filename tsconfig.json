@@ -7,10 +7,10 @@
       "@components/*": ["src/components/*"],
       "@entities/*": ["src/entities/*"],
       "@integrations/*": ["src/integrations/*"],
-      "@layouts/*": ["src/layouts/*"],
+      "@layouts/*": ["src/shared/layouts/*"],
       "@pages/*": ["src/pages/*"],
       "@shared/*": ["src/shared/*"],
-      "@styles/*": ["src/styles/*"],
+      "@styles/*": ["src/shared/styles/*"],
     }
   }
 }

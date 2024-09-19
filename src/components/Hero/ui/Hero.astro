@@ -104,4 +104,11 @@ const presentation = Astro.props.presentation || "image-right";
      */
     grid-template-columns: repeat(auto-fit, minmax(calc((767px / 2 ) - 1rem - 1rem - var(--space-l-xl) - 1px), 1fr));
   }
+
+  [data-presentation="image-right"] > :global(:last-child:is(picture, img)) {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
 </style>
