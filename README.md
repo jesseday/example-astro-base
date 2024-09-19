@@ -1,5 +1,11 @@
 # Astro Example Codebase
 
+## More docs
+
+- [Codebase organization](./docs/codebase-organization.md)
+- Todo: UI Isolation
+- Todo: Testing
+
 ## 🧞 Commands
 
 All commands are run from the root of the project, from a terminal:
@@ -16,9 +22,3 @@ All commands are run from the root of the project, from a terminal:
 | Plopjs generators           |                                                    |
 | `pnpm make`                 | Runs plopjs command to generate files              |
 | `pnpm make component:astro` | Runs plopjs command to create new astro components |
-
-## More docs
-
-- [Codebase organization](./docs/codebase-organization.md)
-- Todo: UI Isolation
-- Todo: Testing
