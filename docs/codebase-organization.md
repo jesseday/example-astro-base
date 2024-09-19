@@ -121,3 +121,4 @@ or Blocks.
 Other directories that are outside of the FSD hierarchy
 
 - Content: Astro content collection definitions
+- Integrations: Astro integrations.
