@@ -3,13 +3,13 @@
  * @description Imports stories in a way that vite can
  * track and bundle them.
  *
- * The storyLoader function in the plugin file
- * is responsible for generating a collection of stories
- * and their metadata.  However, vite was not bundling the
- * story output correctly when using dynamic imports.  This
- * file and import function is a workaround to import the
- * stories in a way that vite can statically analyze
- * and bundle them.
+ * The storyLoader function in the plugin file is responsible
+ * for generating a collection of stories and their metadata.
+ * However, vite was not bundling the story output correctly
+ * when using dynamic imports.  This file and import
+ * function manages to import the stories in a way
+ * that vite can statically analyze and
+ * bundle them.
  *
  * @see https://vitejs.dev/guide/features.html#glob-import
  */
