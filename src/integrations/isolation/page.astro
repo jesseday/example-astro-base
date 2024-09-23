@@ -4,7 +4,7 @@ const container = await experimental_AstroContainer.create();
 
 import { getEntry, getCollection } from 'astro:content';
 import Layout from '@layouts/Layout.astro';
-import componentMap from './import-map';
+import { importStory } from './importStory';
 
 const url = new URL(Astro.request.url);
 
@@ -22,14 +22,8 @@ const menu = (await getCollection('components'))
 
 let html;
 if (entry) {
-  // Just touch the component from the import map.
-  // This is a hack to make sure the styles are loaded
-  const _touch = componentMap[entry.data.id];
-  const AstroComponent = await import(
-    /* @vite-ignore */
-    entry.data.file
-  );
-  html = container.renderToString(AstroComponent.default);
+  const AstroComponent = await importStory(entry.data.path);
+  html = container.renderToString(AstroComponent as any);
 } else {
   html = 'Not found';
 }

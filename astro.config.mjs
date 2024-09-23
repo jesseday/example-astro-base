@@ -2,9 +2,10 @@ import { loadEnv } from "vite";
 import { defineConfig } from "astro/config";
 import netlify from "@astrojs/netlify";
 import node from "@astrojs/node";
+import { generateIsolationRoutes } from "./src/integrations/isolation/plugin";
 
 function setPrerender() {
-  const { PREVIEW } = loadEnv(process.env.NODE_ENV, process.cwd(), "");
+  const { PREVIEW } = loadEnv(process.env.NODE_ENV || "", process.cwd(), "");
 
   return {
     name: "set-prerender",
@@ -16,27 +17,7 @@ function setPrerender() {
   };
 }
 
-function generateIsolationRoutes() {
-  const { PREVIEW } = loadEnv(process.env.NODE_ENV, process.cwd(), "");
-
-  return {
-    name: "generate-isolation-routes",
-    hooks: {
-      "astro:config:setup": ({ injectRoute }) => {
-        if (PREVIEW !== "true") {
-          return;
-        }
-
-        injectRoute({
-          pattern: "/isolation/[...component]",
-          entrypoint: "src/integrations/isolation/page.astro",
-        });
-      },
-    },
-  };
-}
-
-let serverConfig =
+const serverConfig =
   process.env.PRERENDER !== "true"
     ? {
         output: "server",
@@ -48,7 +29,6 @@ let serverConfig =
       }
     : {};
 
-// https://astro.build/config
 export default defineConfig({
   experimental: {
     contentLayer: true,
