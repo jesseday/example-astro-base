@@ -1,10 +1,8 @@
 ---
-import { experimental_AstroContainer } from 'astro/container';
-const container = await experimental_AstroContainer.create();
-
 import { getEntry, getCollection } from 'astro:content';
 import Layout from '@layouts/Layout.astro';
 import { importStory } from './importStory';
+import type { AstroComponentFactory } from 'astro/runtime/server/index.js';
 
 const url = new URL(Astro.request.url);
 
@@ -20,15 +18,12 @@ const menu = (await getCollection('components'))
     return acc;
   }, {});
 
-let html;
+let AstroComponent: AstroComponentFactory | undefined;
 if (entry) {
-  const AstroComponent = await importStory(entry.data.path);
-  html = container.renderToString(AstroComponent as any);
-} else {
-  html = 'Not found';
+  AstroComponent = await importStory(entry.data.path) as AstroComponentFactory;
 }
 ---
-<Layout title={entry.data.name}>
+<Layout title={entry?.data?.name || 'Component not found'}>
   {url.searchParams.get('hideMenu') !== 'true' && (
     <menu>
       <li><a href="?hideMenu=true">Hide menu</a></li>
@@ -47,7 +42,10 @@ if (entry) {
     </menu>
   )}
   <article>
-    <Fragment set:html={html}></Fragment>
+    {AstroComponent && <AstroComponent />}
+    {!AstroComponent && (
+      <h1 class="no-content">Component not found</h1>
+    )}
   </article>
 </Layout>
 
@@ -82,6 +80,11 @@ if (entry) {
 
   menu + article {
     display: block;
+  }
+
+  .no-content {
+    margin: 0;
+    padding: clamp(1rem, 5vw, 2rem);
   }
 
   @media screen and (min-width: 768px) {

@@ -1,21 +1,8 @@
-import { loadEnv } from "vite";
 import { defineConfig } from "astro/config";
 import netlify from "@astrojs/netlify";
 import node from "@astrojs/node";
-import { generateIsolationRoutes } from "./src/integrations/isolation/plugin";
-
-function setPrerender() {
-  const { PREVIEW } = loadEnv(process.env.NODE_ENV || "", process.cwd(), "");
-
-  return {
-    name: "set-prerender",
-    hooks: {
-      "astro:route:setup": ({ route }) => {
-        route.prerender = PREVIEW !== "true";
-      },
-    },
-  };
-}
+import { generateIsolationRoutes } from "./src/integrations/launchpad/plugin";
+import { setPrerender } from "./src/integrations/previewMode";
 
 const serverConfig =
   process.env.PRERENDER !== "true"

@@ -1,4 +1,9 @@
 import { loadEnv } from "vite";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 type ModuleInterface = {
   story: {
@@ -57,7 +62,7 @@ export function generateIsolationRoutes() {
 
         injectRoute({
           pattern: "/isolation/[...component]",
-          entrypoint: "src/integrations/isolation/page.astro",
+          entrypoint: path.join(__dirname, "page.astro"),
         });
       },
     },
