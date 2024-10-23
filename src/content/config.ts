@@ -1,4 +1,4 @@
 import { defineCollection } from "astro:content";
-import { storyLoader } from "@integrations/launchpad/plugin";
+import { storyLoader } from "astro-launchpad/plugin";
 
 export const collections = { components: defineCollection(storyLoader()) };

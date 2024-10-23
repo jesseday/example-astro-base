@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 import netlify from "@astrojs/netlify";
 import node from "@astrojs/node";
-import { generateIsolationRoutes } from "./src/integrations/launchpad/plugin";
+import { generateIsolationRoutes } from "astro-launchpad";
 import { setPrerender } from "./src/integrations/previewMode";
 
 const serverConfig =
@@ -21,5 +21,10 @@ export default defineConfig({
     contentLayer: true,
   },
   ...serverConfig,
-  integrations: [setPrerender(), generateIsolationRoutes()],
+  integrations: [
+    setPrerender(),
+    generateIsolationRoutes({
+      layoutFile: "./src/shared/layouts/Launchpad.astro",
+    }),
+  ],
 });

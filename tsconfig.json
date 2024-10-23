@@ -12,5 +12,6 @@
       "@shared/*": ["src/shared/*"],
       "@styles/*": ["src/shared/styles/*"],
     }
-  }
+  },
+  "include": ["src"]
 }
