@@ -24,6 +24,7 @@ export default defineConfig({
   integrations: [
     setPrerender(),
     generateIsolationRoutes({
+      routePrefix: "/docs",
       layoutFile: "./src/shared/layouts/Launchpad.astro",
     }),
   ],
