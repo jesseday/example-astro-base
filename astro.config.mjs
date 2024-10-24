@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 import netlify from "@astrojs/netlify";
 import node from "@astrojs/node";
-import { generateIsolationRoutes } from "astro-launchpad";
+import launchpad from "astro-launchpad";
 import { setPrerender } from "./src/integrations/previewMode";
 
 const serverConfig =
@@ -23,7 +23,7 @@ export default defineConfig({
   ...serverConfig,
   integrations: [
     setPrerender(),
-    generateIsolationRoutes({
+    launchpad({
       routePrefix: "/docs",
       layoutFile: "./src/shared/layouts/Launchpad.astro",
     }),
